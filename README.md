@@ -1,4 +1,4 @@
-# Unreal_Spacewar!
+# Spacewar Evolved
 
 This is a attempt to replicate [Spacewar!@wikipedia.org](https://en.wikipedia.org/wiki/Spacewar!) game released at 1962.
 
@@ -21,7 +21,7 @@ No proper polishing or testing was done yet.
 
 ## Finished things so far
 * Pawn with "space like" controls with option to attract to every object of another specific class
-* Shooting projectiles without them being affected by any force
+* Shooting projectiles without them being affected by any force, with editable speed
 * Rectangular wraparround effect based on users screen resolution settings
 * Hyperspace panic button teleporting pawn to random location in playable area
 * Camera actor called cam, which in is used as central object and camera for both players in TwinStickExampleMap
@@ -38,7 +38,6 @@ No proper polishing or testing was done yet.
 ## Knwon issues
 * Wraparround using screen resolution is tricky and should be replaced perhaps with limits of the playable area and use the same logic to teleport based on being in or out (overlapping) the playable area.
   That will fix the issue of projectiles not wrapping and going around the level outside "playable area"
-* anything can kill player, not just projectiles
 * not a playable prototype, just proof of concepts
 
 ## Usage
@@ -66,3 +65,5 @@ Game is made using Unreal Engine blueprint system with Warmonger asset having th
 When you load it Blueprint Editor you will see its derived from Pawn (top right corner).
 In left in Assets, there is a Ship mesh, SpringArm with Camera, which is not used in this case and SpotLight which can be useful for real space levels.
 Then all of the ship behaviour is defined in EventGraph - the blueprint part with Specific Functions.
+
+TODO rest
