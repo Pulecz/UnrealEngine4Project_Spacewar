@@ -1,4 +1,4 @@
-# Spacewar Evolved
+# Project Spacewar Evolved
 
 This is a attempt to replicate [Spacewar!@wikipedia.org](https://en.wikipedia.org/wiki/Spacewar!) game released at 1962.
 
@@ -51,7 +51,7 @@ Find win64 binary in releases, download, unpack and launch it.
 * S - engine thrust
 * A - rotate left
 * D - rotate right
-* A+D - hyperspace panic button (hold buttons together)
+* A + D - hyperspace panic button (hold buttons together)
 
 ###### Gamepad
 * Right thumbstick X Axis/left and right buttons - rotate left/right
@@ -60,10 +60,29 @@ Find win64 binary in releases, download, unpack and launch it.
 * A(Xbox controller) X(Dualshock) - hyperspace panic button (hold) (not implemented yet, just use keyboard, its cooler!)
 
 # Development and blueprints description
-Game is made using Unreal Engine blueprint system with Warmonger asset having the most logic and settings.
+Game is made using Blueprints:
+* Center Camera with Destroying and Respawning Actor logic and editable parameter:
+	* Starting Position Player 1 - X,Y,Z vector of start position for player 1 which is used after respawn (Default -800, -800, 100)
+	* Starting Position Player 2 - X,Y,Z vector of start position for player 2 which is used after respawn (Default 800, 800, 100)
+	* **NOTE**: currently you have to edit starting positions also in the map
+* PlayableArea Actor with Light in 0,0,100 and scalable cylinder play area
+* Torpedo Projectile taken from TwinStickShooter and added editable initial speed
+* Warmonger Pawn having the controlls and following editable parameters:
+	* Environment > Gravity Attraction - Amount of force applied to a ship to move it to the Center Camera (Default 9.6)
+	* Ship > EngineSpeed - Multiply the amount of force added to the ship when thrusting (Default 35)
+	* Ship > TurnSpeed - How quickly the ship can turn/rotate left or right (Default 2)
+	* Ship > FireDelay - Seconds between shots, the lower the faster the shooting (Default 0.7)
+	* Ship > ProjectileSpeed - Velocity of the ship + ProjectileSpeed = the velocity of the projectile (Default 400)
+	* Ship > JumpChargingTime - Time in seconds before entering hyperspace (teleporting to very high Z) (Default 0.1)
+	* Ship > JumpTime -  Amount of time in seconds spent in hyperspace, before teleporting back to play area(Default 3)
+	* Ship > JumpRechardeDelay - Time in seconds until the Jump is avaliable again (Default 5)
+
+
 
 When you load it Blueprint Editor you will see its derived from Pawn (top right corner).
 In left in Assets, there is a Ship mesh, SpringArm with Camera, which is not used in this case and SpotLight which can be useful for real space levels.
 Then all of the ship behaviour is defined in EventGraph - the blueprint part with Specific Functions.
 
-TODO rest
+## TODO
+* See if Center Camera and PlayableArea Actor can be merged for simplicity
+* Spawn characters, so starting position does not have to be set on 2 places
